@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Arooj — Chemist & Science Communicator</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --cream: #F5F0E1;
+    --cream-dark: #EDE6D0;
+    --terracotta: #8B4A2F;
+    --terracotta-light: #C4744E;
+    --terracotta-pale: #F2E0D5;
+    --dark: #2C1A0E;
+    --mid: #6B4C3B;
+    --light-text: #9C7B6B;
+    --white: #FDFAF4;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--cream);
+    color: var(--dark);
+    line-height: 1.7;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(245, 240, 225, 0.92);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(139, 74, 47, 0.15);
+    padding: 1rem 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .nav-logo {
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    background: var(--terracotta);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Playfair Display', serif;
+    color: var(--white);
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+
+  nav ul {
+    list-style: none;
+    display: flex;
+    gap: 2.5rem;
+  }
+
+  nav a {
+    text-decoration: none;
+    color: var(--mid);
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+
+  nav a:hover { color: var(--terracotta); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6rem 3rem 4rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    width: 500px; height: 500px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(196, 116, 78, 0.08) 0%, transparent 70%);
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+  }
+
+  .hero-eyebrow {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--terracotta-light);
+    margin-bottom: 1.5rem;
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 7vw, 6rem);
+    font-weight: 400;
+    color: var(--dark);
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: var(--terracotta);
+  }
+
+  .hero-sub {
+    font-size: 1.1rem;
+    color: var(--mid);
+    max-width: 580px;
+    margin: 0 auto 2.5rem;
+    font-weight: 300;
+    line-height: 1.8;
+  }
+
+  .hero-tags {
+    display: flex;
+    gap: 0.75rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 3rem;
+  }
+
+  .tag {
+    padding: 0.4rem 1rem;
+    border: 1px solid rgba(139, 74, 47, 0.3);
+    border-radius: 100px;
+    font-size: 12px;
+    color: var(--terracotta);
+    font-weight: 500;
+    letter-spacing: 0.3px;
+  }
+
+  .btn {
+    display: inline-block;
+    padding: 0.85rem 2rem;
+    background: var(--terracotta);
+    color: var(--white);
+    text-decoration: none;
+    border-radius: 100px;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    transition: background 0.2s, transform 0.15s;
+    margin: 0 0.5rem;
+  }
+
+  .btn:hover { background: var(--dark); transform: translateY(-1px); }
+
+  .btn-outline {
+    background: transparent;
+    border: 1.5px solid var(--terracotta);
+    color: var(--terracotta);
+  }
+
+  .btn-outline:hover { background: var(--terracotta); color: var(--white); }
+
+  /* SECTIONS */
+  section {
+    padding: 6rem 3rem;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .section-eyebrow {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--terracotta-light);
+    margin-bottom: 0.75rem;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 400;
+    color: var(--dark);
+    margin-bottom: 1rem;
+    line-height: 1.2;
+  }
+
+  .section-divider {
+    width: 50px;
+    height: 2px;
+    background: var(--terracotta);
+    margin-bottom: 3rem;
+  }
+
+  /* ABOUT */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+  }
+
+  .about-photo-placeholder {
+    aspect-ratio: 4/5;
+    background: var(--cream-dark);
+    border-radius: 8px;
+    border: 1px dashed rgba(139, 74, 47, 0.3);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    color: var(--light-text);
+    font-size: 13px;
+  }
+
+  .photo-icon {
+    width: 48px; height: 48px;
+    border: 1.5px dashed var(--light-text);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px;
+  }
+
+  .about-text p {
+    color: var(--mid);
+    margin-bottom: 1.25rem;
+    font-size: 1.05rem;
+    font-weight: 300;
+  }
+
+  .about-stats {
+    display: flex;
+    gap: 2rem;
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(139, 74, 47, 0.15);
+  }
+
+  .stat-item { text-align: center; }
+
+  .stat-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    color: var(--terracotta);
+    font-weight: 600;
+    line-height: 1;
+    display: block;
+  }
+
+  .stat-label {
+    font-size: 11px;
+    color: var(--light-text);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 0.3rem;
+    display: block;
+  }
+
+  /* WHAT I DO */
+  .pillars-bg {
+    background: var(--cream-dark);
+  }
+
+  .pillars-section {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 6rem 3rem;
+  }
+
+  .pillars-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-top: 3rem;
+  }
+
+  .pillar-card {
+    background: var(--white);
+    border: 1px solid rgba(139, 74, 47, 0.1);
+    border-radius: 8px;
+    padding: 2.5rem 2rem;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .pillar-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(139, 74, 47, 0.1);
+  }
+
+  .pillar-icon {
+    font-size: 2rem;
+    margin-bottom: 1.25rem;
+    display: block;
+  }
+
+  .pillar-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    color: var(--dark);
+    margin-bottom: 1rem;
+    font-weight: 400;
+  }
+
+  .pillar-card p {
+    color: var(--mid);
+    font-size: 0.95rem;
+    font-weight: 300;
+    line-height: 1.8;
+  }
+
+  /* WORK */
+  .work-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-top: 3rem;
+  }
+
+  .work-card {
+    background: var(--white);
+    border: 1px solid rgba(139, 74, 47, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.2s;
+  }
+
+  .work-card:hover { transform: translateY(-3px); }
+
+  .work-img-placeholder {
+    height: 200px;
+    background: var(--terracotta-pale);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    font-size: 13px;
+    color: var(--terracotta);
+    font-weight: 500;
+    border-bottom: 1px solid rgba(139, 74, 47, 0.1);
+  }
+
+  .work-img-icon { font-size: 2rem; }
+
+  .work-card-body { padding: 1.75rem; }
+
+  .work-badge {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    background: var(--terracotta-pale);
+    border-radius: 100px;
+    font-size: 11px;
+    color: var(--terracotta);
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+  }
+
+  .work-card-body h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    color: var(--dark);
+    margin-bottom: 0.75rem;
+    font-weight: 400;
+  }
+
+  .work-card-body p {
+    color: var(--mid);
+    font-size: 0.9rem;
+    font-weight: 300;
+    line-height: 1.7;
+  }
+
+  .work-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    margin-top: 1.25rem;
+    font-size: 13px;
+    color: var(--terracotta);
+    text-decoration: none;
+    font-weight: 500;
+    transition: gap 0.2s;
+  }
+
+  .work-link:hover { gap: 0.6rem; }
+
+  /* AFFILIATIONS */
+  .affiliations-bg { background: var(--cream-dark); }
+
+  .affiliations-section {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 6rem 3rem;
+  }
+
+  .affil-group { margin-bottom: 3rem; }
+
+  .affil-group-title {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--terracotta-light);
+    margin-bottom: 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .affil-group-title::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: rgba(139, 74, 47, 0.2);
+  }
+
+  .affil-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+  }
+
+  .affil-pill {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: var(--white);
+    border: 1px solid rgba(139, 74, 47, 0.15);
+    border-radius: 100px;
+    font-size: 13px;
+    color: var(--dark);
+    font-weight: 400;
+    transition: border-color 0.2s, background 0.2s;
+  }
+
+  .affil-pill:hover {
+    border-color: var(--terracotta);
+    background: var(--terracotta-pale);
+  }
+
+  .affil-pill img {
+    width: 18px;
+    height: 18px;
+    border-radius: 3px;
+    object-fit: contain;
+    flex-shrink: 0;
+  }
+
+  .affil-logo-placeholder {
+    width: 18px; height: 18px;
+    border-radius: 3px;
+    background: var(--terracotta-pale);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 8px;
+    color: var(--terracotta);
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  /* CONTACT */
+  .contact-inner {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .contact-inner p {
+    color: var(--mid);
+    font-size: 1.1rem;
+    font-weight: 300;
+    margin-bottom: 2.5rem;
+    line-height: 1.8;
+  }
+
+  .contact-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  /* FOOTER */
+  footer {
+    text-align: center;
+    padding: 2rem;
+    border-top: 1px solid rgba(139, 74, 47, 0.1);
+    font-size: 12px;
+    color: var(--light-text);
+    letter-spacing: 0.5px;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.5rem; }
+    nav ul { gap: 1.5rem; }
+    section, .pillars-section, .affiliations-section { padding: 4rem 1.5rem; }
+    .about-grid, .pillars-grid, .work-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .hero { padding: 5rem 1.5rem 3rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">AR</div>
+  <ul>
+    <li><a href="#about">About</a></li>
+    <li><a href="#what-i-do">Work</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#affiliations">Affiliations</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div>
+    <p class="hero-eyebrow">Chemistry · Leadership · Science Communication</p>
+    <h1><em>Hello,</em> I am Arooj!</h1>
+    <p class="hero-sub">A third-year analytical chemistry student who somehow ended up writing on Medium, facilitating workshops, and collecting ambassador roles. The common thread? I like making complex things feel human.</p>
+    <div class="hero-tags">
+      <span class="tag">Science Communicator</span>
+      <span class="tag">Facilitator</span>
+      <span class="tag">Medium Writer</span>
+      <span class="tag">Community Leader</span>
+      <span class="tag">UNDP Fellow</span>
+    </div>
+    <a href="#contact" class="btn">Let's Chat</a>
+    <a href="#what-i-do" class="btn btn-outline">See My Work</a>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-grid">
+    <img src="https://drive.google.com/uc?export=view&id=1olhXp3W8yEjKuDj2XQyz6uIFG-gKvrd6" alt="Arooj" referrerpolicy="no-referrer" style="width:100%; aspect-ratio:4/5; object-fit:cover; border-radius:8px;" onerror="this.style.background='var(--cream-dark)';this.style.minHeight='300px'">
+    <div class="about-text">
+      <p class="section-eyebrow">About Me</p>
+      <h2 class="section-title">A chemist trying to make sense of the real world</h2>
+      <div class="section-divider"></div>
+      <p>I'm Arooj — a third-year analytical chemistry student, science communicator, and facilitator who finds meaning at the intersection of knowledge and people.</p>
+      <p>Chemistry isn't just my degree — it's my lens. It's why I write the way I write, ask the questions I ask, and care deeply about making science feel less intimidating for everyone.</p>
+      <p>Whether I'm facilitating a workshop for thousands or writing a Medium article at midnight, the goal is always the same: make complex things feel human.</p>
+      <div class="about-stats">
+        <div class="stat-item">
+          <span class="stat-number">7</span>
+          <span class="stat-label">Medium Articles</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">10K+</span>
+          <span class="stat-label">Community Members</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">25+</span>
+          <span class="stat-label">Affiliations</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">40+</span>
+          <span class="stat-label">Workshop Attendees</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT I DO -->
+<div class="pillars-bg" id="what-i-do">
+  <div class="pillars-section">
+    <p class="section-eyebrow">What I Do</p>
+    <h2 class="section-title">Three things. One throughline.</h2>
+    <div class="section-divider"></div>
+    <div class="pillars-grid">
+      <div class="pillar-card">
+        <span class="pillar-icon">🔬</span>
+        <h3>Science Communication</h3>
+        <p>7 published articles on Medium and counting. I write about science in a way that doesn't make people want to close the tab — breaking down complex ideas into stories that actually stick.</p>
+      </div>
+      <div class="pillar-card">
+        <span class="pillar-icon">🎤</span>
+        <h3>Leadership & Facilitation</h3>
+        <p>From facilitating communities of 10,000+ members to organizing sessions with 40+ people, I create spaces where people feel safe enough to show up fully. Positive turnout is kind of my thing.</p>
+      </div>
+      <div class="pillar-card">
+        <span class="pillar-icon">⚗️</span>
+        <h3>Chemistry</h3>
+        <p>Chemistry isn't just my degree — it's my lens. It's why I write the way I write, ask the questions I ask, and care about making science feel less intimidating for everyone.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <p class="section-eyebrow">Featured Work</p>
+  <h2 class="section-title">Where ideas became real things</h2>
+  <div class="section-divider"></div>
+  <div class="work-grid">
+
+    <div class="work-card">
+      <img src="https://i.ibb.co/99TR5PWL" alt="Medium Science Writing" style="width:100%; height:200px; object-fit:cover; border-bottom:1px solid rgba(139,74,47,0.1);">
+      <div class="work-card-body">
+        <span class="work-badge">Writing</span>
+        <h3>Medium Science Writing</h3>
+        <p>7 articles making science more human — from research literacy to navigating self-doubt in a degree. Written for the curious, not just the qualified.</p>
+        <a href="https://medium.com/@aroojnotes" class="work-link" target="_blank">Read on Medium →</a>
+      </div>
+    </div>
+
+    <div class="work-card">
+      <img src="https://i.ibb.co/fGCGJ81N" alt="AI Integrated Leadership Program" style="width:100%; height:200px; object-fit:cover; border-bottom:1px solid rgba(139,74,47,0.1);">
+      <div class="work-card-body">
+        <span class="work-badge">Facilitation</span>
+        <h3>AI Integrated Leadership Program</h3>
+        <p>A facilitation slide deck created as capstone work for the Aspire Leaders Program. Designed to engage an audience and make people genuinely care about the content.</p>
+        <a href="https://drive.google.com/drive/folders/1WUpQypqu-ntUJFUnMQQf0UBQJEX2BLKp" class="work-link" target="_blank">View Slide Decks →</a>
+      </div>
+    </div>
+
+    <div class="work-card">
+      <img src="https://drive.google.com/uc?export=view&id=194MncgOKDD_50A5qpQLD1iMzkA7kJGSa" alt="Workshop" referrerpolicy="no-referrer" style="width:100%; height:200px; object-fit:cover; border-bottom:1px solid rgba(139,74,47,0.1);">
+      <div class="work-card-body">
+        <span class="work-badge">Workshop</span>
+        <h3>Project Management Fundamentals</h3>
+        <p>Hosted and facilitated a session on project management fundamentals for 40+ attendees. Planned the structure, held the space, and made sure people left with something useful.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- AFFILIATIONS -->
+<div class="affiliations-bg" id="affiliations">
+  <div class="affiliations-section">
+    <p class="section-eyebrow">Affiliations</p>
+    <h2 class="section-title">Communities I call home</h2>
+    <div class="section-divider"></div>
+
+    <div class="affil-group">
+      <div class="affil-group-title">🏛️ University & Institute Programs</div>
+      <div class="affil-pills">
+        <span class="affil-pill"><img src="https://logo.clearbit.com/harvard.edu" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex'" alt=""><span class="affil-logo-placeholder" style="display:none">H</span>Harvard Innovation Labs</span>
+        <span class="affil-pill"><img src="https://logo.clearbit.com/stanford.edu" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex'" alt=""><span class="affil-logo-placeholder" style="display:none">S</span>Stanford Code In Place</span>
+        <span class="affil-pill"><img src="https://logo.clearbit.com/cornell.edu" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex'" alt=""><span class="affil-logo-placeholder" style="display:none">C</span>eCornell & Mexoxo</span>
+        <span class="affil-pill"><img src="https://logo.clearbit.com/cam.ac.uk" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex'" alt=""><span class="affil-logo-placeholder" style="display:none">Ca</span>Cambridge DemEd Global</span>
+        <span class="affil-pill"><img src="https://logo.clearbit.com/aspireleadership.org" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex'" alt=""><span class="affil-logo-placeholder" style="display:none">A</span>Aspire Leaders Program</span>
+        <span class="affil-pill"><img src="https://logo.clearbit.com/fxb.org" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex'" alt=""><span class="affil-logo-placeholder" style="display:none">F</span>FXB Global</span>
+      </div>
+    </div>
+
+    <div class="affil-group">
+      <div class="affil-group-title">🌍 Global Organizations & Fellowships</div>
+      <div class="affil-pills">
+        <span class="affil-pill"><img src="https://logo.clearbit.com/undp.org" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex'" alt=""><span class="affil-logo-placeholder" style="display:none">UN</span>UNDP</span>
+        <span class="affil-pill"><img src="https://logo.clearbit.com/youngo.un.org" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex'" alt=""><span class="affil-logo-placeholder" style="display:none">Y</span>YOUNGO Science Working Group</span>
+        <span class="affil-pill"><img src="https://logo.clearbit.com/womenascension.org" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex'" alt=""><span class="affil-logo-placeholder" style="display:none">WA</span>Women Ascension</span>
+        <span class="affil-pill"><img src="https://logo.clearbit.com/hundred.org" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex'" alt=""><span class="affil-logo-placeholder" style="display:none">H</span>HundrED</span>
+        <span class="affil-pill"><img src="https://logo.clearbit.com/ggrc.org" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex'" alt=""><span class="affil-logo-placeholder" style="display:none">GG</span>The Great Global Reconvergence Council</span>
+        <span class="affil-pill"><span class="affil-logo-placeholder">GS</span>Global Ambassadors of Sustainability</span>
+        <span class="affil-pill"><span class="affil-logo-placeholder">LL</span>Leading Lady Empire</span>
+      </div>
+    </div>
+
+    <div class="affil-group">
+      <div class="affil-group-title">🔬 Science & Research Communities</div>
+      <div class="affil-pills">
+        <span class="affil-pill"><img src="https://logo.clearbit.com/acs.org" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex'" alt=""><span class="affil-logo-placeholder" style="display:none">ACS</span>American Chemical Society</span>
+        <span class="affil-pill"><img src="https://logo.clearbit.com/rsc.org" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex'" alt=""><span class="affil-logo-placeholder" style="display:none">RSC</span>Royal Society of Chemistry</span>
+        <span class="affil-pill"><img src="https://logo.clearbit.com/iycn.net" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex'" alt=""><span class="affil-logo-placeholder" style="display:none">IY</span>International Young Chemists Network</span>
+        <span class="affil-pill"><img src="https://logo.clearbit.com/zooniverse.org" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex'" alt=""><span class="affil-logo-placeholder" style="display:none">Z</span>Zooniverse</span>
+        <span class="affil-pill"><img src="https://logo.clearbit.com/nobelpbc.com" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex'" alt=""><span class="affil-logo-placeholder" style="display:none">N</span>Nobel PBC Learning</span>
+        <span class="affil-pill"><span class="affil-logo-placeholder">GM</span>Global Mentorship Initiative</span>
+        <span class="affil-pill"><span class="affil-logo-placeholder">Sc</span>Scistater</span>
+      </div>
+    </div>
+
+    <div class="affil-group">
+      <div class="affil-group-title">💡 Leadership & Community</div>
+      <div class="affil-pills">
+        <span class="affil-pill"><img src="https://logo.clearbit.com/sheplustech.com" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex'" alt=""><span class="affil-logo-placeholder" style="display:none">S+</span>She+ Tech</span>
+        <span class="affil-pill"><img src="https://logo.clearbit.com/economicsandpeace.org" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex'" alt=""><span class="affil-logo-placeholder" style="display:none">IE</span>Institute for Economics & Peace (IEP)</span>
+        <span class="affil-pill"><img src="https://logo.clearbit.com/gaotek.com" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex'" alt=""><span class="affil-logo-placeholder" style="display:none">G</span>Gaotek</span>
+        <span class="affil-pill"><span class="affil-logo-placeholder">BF</span>BAFON (Be A Force of Nature)</span>
+        <span class="affil-pill"><span class="affil-logo-placeholder">PA</span>Pak Angels</span>
+        <span class="affil-pill"><span class="affil-logo-placeholder">Bl</span>The Bloom Space Community</span>
+        <span class="affil-pill"><span class="affil-logo-placeholder">Af</span>Afriment</span>
+        <span class="affil-pill"><span class="affil-logo-placeholder">YC</span>YES! You Can Global Foundation</span>
+        <span class="affil-pill"><img src="https://logo.clearbit.com/excelerate.as" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex'" alt=""><span class="affil-logo-placeholder" style="display:none">Ex</span>Excelerate</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-inner">
+    <p class="section-eyebrow">Let's Connect</p>
+    <h2 class="section-title">Let's make something worthwhile</h2>
+    <div class="section-divider" style="margin: 0 auto 2rem;"></div>
+    <p>Whether it's a collaboration, fellowship, writing gig, or just a really good conversation about science — I'm always open to connecting with people who care about the things I care about.</p>
+    <div class="contact-buttons">
+      <a href="https://www.linkedin.com/in/arooj-riaz7" class="btn" target="_blank">Visit LinkedIn</a>
+      <a href="https://medium.com/@aroojnotes" class="btn btn-outline" target="_blank">Visit Medium</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2025 Arooj · Designed with intention</p>
+</footer>
+
+</body>
+</html>
